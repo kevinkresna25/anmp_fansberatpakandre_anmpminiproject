@@ -24,6 +24,7 @@
             android:layout_marginTop="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtBeratBadan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Berat Badan"
@@ -43,6 +44,7 @@
             android:layout_marginTop="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtTinggiBadan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Tinggi Badan"
@@ -62,6 +64,7 @@
             android:layout_marginTop="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtUsia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Usia"
@@ -69,9 +72,9 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/btnTambah"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/btnTambahData"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
             android:layout_gravity="left"
             android:layout_marginTop="40dp"
             android:text="TAMBAH DATA" />
