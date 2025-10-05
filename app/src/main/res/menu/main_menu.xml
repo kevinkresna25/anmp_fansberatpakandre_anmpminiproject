@@ -15,6 +15,6 @@
     <item
         android:id="@+id/profilFragment"
         android:icon="@drawable/baseline_person_24"
-        android:title="Profile"
+        android:title="Profil"
         app:showAsAction="always" />
 </menu>
