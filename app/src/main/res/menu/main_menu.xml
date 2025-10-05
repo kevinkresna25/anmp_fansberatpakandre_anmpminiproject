@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/ukurFragment"
+        android:icon="@drawable/height"
+        android:title="Ukur"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/dataFragment"
+        android:icon="@drawable/baseline_list_alt_24"
+        android:title="Data"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/profilFragment"
+        android:icon="@drawable/baseline_person_24"
+        android:title="Profile"
+        app:showAsAction="always" />
+</menu>
