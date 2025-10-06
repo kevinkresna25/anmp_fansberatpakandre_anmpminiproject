@@ -13,7 +13,7 @@ class DataViewModel(application: Application) : AndroidViewModel(application) {
     val listPengukuran = MutableLiveData<List<Pengukuran>>()
     val listKosong = MutableLiveData<Boolean>()
 
-    fun muatData() {
+    fun loadData() {
         val jsonString = fileHelper.readFromFile()
         if (jsonString.isNotEmpty()) {
             val gson = Gson()
