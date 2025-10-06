@@ -11,63 +11,42 @@
         android:orientation="vertical"
         android:padding="50dp">
 
-        <TextView
-            android:id="@+id/tvBerat"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Berat Badan (kg)" />
-
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="30dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtBeratBadan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Berat Badan"
+                android:hint="Berat Badan (kg)"
                 android:numeric="signed" />
         </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:id="@+id/tvTinggi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:text="Tinggi Badan (cm)" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="40dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtTinggiBadan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Tinggi Badan"
+                android:hint="Tinggi Badan (cm)"
                 android:numeric="signed" />
         </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:id="@+id/tvUsia"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:text="Usia (tahun)" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="40dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtUsia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Usia"
+                android:hint="Usia (tahun)"
                 android:numeric="signed" />
         </com.google.android.material.textfield.TextInputLayout>
 
