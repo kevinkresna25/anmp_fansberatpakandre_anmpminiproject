@@ -6,8 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ubaya.anmpminiproject.R
+import com.ubaya.anmpminiproject.databinding.FragmentDataBinding
+import com.ubaya.anmpminiproject.viewmodel.DataViewModel
 
 class DataFragment : Fragment() {
+    private lateinit var binding: FragmentDataBinding
+    private lateinit var viewModel: DataViewModel
+    private val adapter = DataAdapter(arrayListOf())
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
