@@ -10,7 +10,7 @@ import com.ubaya.anmpminiproject.util.FileHelper
 
 class UkurViewModel(application: Application) : AndroidViewModel(application) {
     private val fileHelper = FileHelper(application)
-    val saveStatus = MutableLiveData<Boolean>()
+    val saveStatus = MutableLiveData<Boolean?>()
 
     fun simpanPengukuran(pengukuranBaru: Pengukuran) {
         try {
@@ -33,9 +33,15 @@ class UkurViewModel(application: Application) : AndroidViewModel(application) {
             // Tulis kembali ke file
             fileHelper.writeToFile(newJsonString)
             saveStatus.value = true
+            resetStatus()
         } catch (e: Exception) {
             e.printStackTrace()
             saveStatus.value = false
+            resetStatus()
         }
+    }
+
+    fun resetStatus() {
+        saveStatus.value = null
     }
 }

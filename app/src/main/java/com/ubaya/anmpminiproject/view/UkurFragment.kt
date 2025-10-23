@@ -43,14 +43,16 @@ class UkurFragment : Fragment() {
 
         // Observe status penyimpanan
         viewModel.saveStatus.observe(viewLifecycleOwner) { status ->
-            if (status) {
+            if (status == true) {
                 Toast.makeText(context, "Data berhasil ditambahkan", Toast.LENGTH_SHORT).show()
                 binding.txtBeratBadan.setText("")
                 binding.txtTinggiBadan.setText("")
                 binding.txtUsia.setText("")
                 binding.txtBeratBadan.requestFocus()
-            } else {
+                viewModel.resetStatus()
+            } else if(status == false) {
                 Toast.makeText(context, "Gagal menyimpan data", Toast.LENGTH_SHORT).show()
+                viewModel.resetStatus()
             }
         }
     }
