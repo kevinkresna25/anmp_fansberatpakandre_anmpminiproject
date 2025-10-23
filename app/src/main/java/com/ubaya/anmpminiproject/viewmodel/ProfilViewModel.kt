@@ -11,7 +11,7 @@ class ProfilViewModel(application: Application) : AndroidViewModel(application) 
     val nama = MutableLiveData<String>()
     val tglLahir = MutableLiveData<String>()
     val jenisKelamin = MutableLiveData<String>()
-    val saveStatus = MutableLiveData<Boolean>()
+    val saveStatus = MutableLiveData<Boolean?>()
 
     fun loadProfil() {
         nama.value = sharedPrefHelper.getNama()
@@ -23,9 +23,15 @@ class ProfilViewModel(application: Application) : AndroidViewModel(application) 
         try {
             sharedPrefHelper.simpanProfil(nama, tglLahir, jenisKelamin)
             saveStatus.value = true
+            resetStatus()
         } catch (e: Exception) {
             e.printStackTrace()
             saveStatus.value = false
+            resetStatus()
         }
+    }
+
+    fun resetStatus() {
+        saveStatus.value = null
     }
 }

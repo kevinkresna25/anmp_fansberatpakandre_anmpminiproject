@@ -59,9 +59,9 @@ class ProfilFragment : Fragment() {
             }
         }
         viewModel.saveStatus.observe(viewLifecycleOwner) { status ->
-            if (status) {
+            if (status == true) {
                 Toast.makeText(context, "Profil berhasil disimpan", Toast.LENGTH_SHORT).show()
-            } else {
+            } else if(status == false) {
                 Toast.makeText(context, "Profil gagal disimpan", Toast.LENGTH_SHORT).show()
             }
         }
