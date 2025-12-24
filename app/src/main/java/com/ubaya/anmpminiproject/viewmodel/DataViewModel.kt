@@ -11,20 +11,38 @@ import com.ubaya.anmpminiproject.util.FileHelper
 import com.ubaya.anmpminiproject.util.buildDb
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
-class DataViewModel(application: Application) : AndroidViewModel(application) {
+class DataViewModel(application: Application) : AndroidViewModel(application), CoroutineScope {
 //    private val fileHelper = FileHelper(application)
 //    val listPengukuran = MutableLiveData<List<Pengukuran>>()
 //    val listKosong = MutableLiveData<Boolean>()
+
+    private val job = Job()
+
     val ukurListLD = MutableLiveData<List<UkurData>>()
+    val loadingLD = MutableLiveData<Boolean>()
+    val errorLD = MutableLiveData<Boolean>()
+
+    override val coroutineContext: CoroutineContext
+        get() = job + Dispatchers.IO
 
     fun refresh() {
-        CoroutineScope(Dispatchers.IO).launch {
-            val db = buildDb(getApplication())
-            // Ambil semua data dari tabel
-            val data = db.ukurDao().selectAllUkur()
-            ukurListLD.postValue(data)
+        loadingLD.postValue(true)
+        errorLD.postValue(false)
+
+        launch {
+            try {
+                val db = buildDb(getApplication())
+                val data = db.ukurDao().selectAllUkur()
+                ukurListLD.postValue(data)
+            } catch (e: Exception) {
+                errorLD.postValue(true)
+            } finally {
+                loadingLD.postValue(false)
+            }
         }
     }
 

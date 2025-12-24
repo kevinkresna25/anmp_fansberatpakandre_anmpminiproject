@@ -5,8 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ubaya.anmpminiproject.databinding.PengukuranListItemBinding
 import com.ubaya.anmpminiproject.model.Pengukuran
+import com.ubaya.anmpminiproject.model.UkurData
 
-class DataAdapter(private var pengukuranList: ArrayList<Pengukuran>)
+class DataAdapter(private var pengukuranList: ArrayList<UkurData>)
     : RecyclerView.Adapter<DataAdapter.PengukuranViewHolder>()  {
 
     class PengukuranViewHolder(var binding: PengukuranListItemBinding) :
@@ -22,13 +23,15 @@ class DataAdapter(private var pengukuranList: ArrayList<Pengukuran>)
     override fun getItemCount() = pengukuranList.size
 
     override fun onBindViewHolder(holder: PengukuranViewHolder, position: Int) {
-        val pengukuran = pengukuranList[position]
-        holder.binding.txtUsiaValue.text = pengukuran.usia
-        holder.binding.txtTinggiValue.text = pengukuran.tinggi
-        holder.binding.txtBeratValue.text = pengukuran.berat
+        holder.binding.ukur = pengukuranList[position]
+
+//        val pengukuran = pengukuranList[position]
+//        holder.binding.txtUsiaValue.text = pengukuran.usia
+//        holder.binding.txtTinggiValue.text = pengukuran.tinggi
+//        holder.binding.txtBeratValue.text = pengukuran.berat
     }
 
-    fun updateData(newPengukuranList: List<Pengukuran>) {
+    fun updateData(newPengukuranList: List<UkurData>) {
         pengukuranList.clear()
         pengukuranList.addAll(newPengukuranList)
         notifyDataSetChanged()

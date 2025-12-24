@@ -31,27 +31,27 @@ class DataFragment : Fragment() {
 
         binding.recViewData.layoutManager = LinearLayoutManager(context)
         binding.recViewData.adapter = adapter
-        viewModel.loadData()
+        viewModel.refresh()
 
         observeViewModel()
     }
 
     override fun onResume() {
         super.onResume()
-        viewModel.loadData()
+        viewModel.refresh()
     }
 
     private fun observeViewModel() {
-        viewModel.listPengukuran.observe(viewLifecycleOwner) { data ->
+        viewModel.ukurListLD.observe(viewLifecycleOwner) { data ->
             adapter.updateData(data)
         }
 
-        viewModel.listKosong.observe(viewLifecycleOwner) { isKosong ->
-            if (isKosong == true) {
-                // Hapus data lama di adapter jika file kosong
-                adapter.updateData(emptyList())
-                Toast.makeText(context, "Belum ada data pengukuran", Toast.LENGTH_SHORT).show()
-            }
-        }
+//        viewModel.listKosong.observe(viewLifecycleOwner) { isKosong ->
+//            if (isKosong == true) {
+//                // Hapus data lama di adapter jika file kosong
+//                adapter.updateData(emptyList())
+//                Toast.makeText(context, "Belum ada data pengukuran", Toast.LENGTH_SHORT).show()
+//            }
+//        }
     }
 }
