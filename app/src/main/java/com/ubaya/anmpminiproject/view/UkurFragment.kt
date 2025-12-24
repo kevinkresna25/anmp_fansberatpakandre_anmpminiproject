@@ -12,7 +12,7 @@ import com.ubaya.anmpminiproject.databinding.FragmentUkurBinding
 import com.ubaya.anmpminiproject.model.Pengukuran
 import com.ubaya.anmpminiproject.viewmodel.UkurViewModel
 
-class UkurFragment : Fragment() {
+class UkurFragment : Fragment(), ButtonClickListener {
     private lateinit var binding: FragmentUkurBinding
     private lateinit var viewModel: UkurViewModel
 
@@ -28,32 +28,51 @@ class UkurFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(UkurViewModel::class.java)
 
-        binding.btnTambahData.setOnClickListener {
-            val berat = binding.txtBeratBadan.text.toString()
-            val tinggi = binding.txtTinggiBadan.text.toString()
-            val usia = binding.txtUsia.text.toString()
+        // Binding Data ke XML
+        binding.viewModel = viewModel
+        binding.listener = this
+        binding.lifecycleOwner = viewLifecycleOwner // supaya LiveData di ViewModel Two-Way Binding
 
-            if (berat.isNotEmpty() && tinggi.isNotEmpty() && usia.isNotEmpty()) {
-                val pengukuran = Pengukuran(berat, tinggi, usia)
-                viewModel.simpanPengukuran(pengukuran)
-            } else {
-                Toast.makeText(context, "Semua field harus diisi", Toast.LENGTH_SHORT).show()
-            }
-        }
+//        binding.btnTambahData.setOnClickListener {
+//            val berat = binding.txtBeratBadan.text.toString()
+//            val tinggi = binding.txtTinggiBadan.text.toString()
+//            val usia = binding.txtUsia.text.toString()
+//
+//            if (berat.isNotEmpty() && tinggi.isNotEmpty() && usia.isNotEmpty()) {
+//                val pengukuran = Pengukuran(berat, tinggi, usia)
+//                viewModel.simpanPengukuran(pengukuran)
+//            } else {
+//                Toast.makeText(context, "Semua field harus diisi", Toast.LENGTH_SHORT).show()
+//            }
+//        }
 
-        // Observe status penyimpanan
-        viewModel.saveStatus.observe(viewLifecycleOwner) { status ->
-            if (status == true) {
-                Toast.makeText(context, "Data berhasil ditambahkan", Toast.LENGTH_SHORT).show()
-                binding.txtBeratBadan.setText("")
-                binding.txtTinggiBadan.setText("")
-                binding.txtUsia.setText("")
-                binding.txtBeratBadan.requestFocus()
-                viewModel.resetStatus()
-            } else if(status == false) {
-                Toast.makeText(context, "Gagal menyimpan data", Toast.LENGTH_SHORT).show()
-                viewModel.resetStatus()
-            }
+//        // Observe status penyimpanan
+//        viewModel.saveStatus.observe(viewLifecycleOwner) { status ->
+//            if (status == true) {
+//                Toast.makeText(context, "Data berhasil ditambahkan", Toast.LENGTH_SHORT).show()
+//                binding.txtBeratBadan.setText("")
+//                binding.txtTinggiBadan.setText("")
+//                binding.txtUsia.setText("")
+//                binding.txtBeratBadan.requestFocus()
+//                viewModel.resetStatus()
+//            } else if(status == false) {
+//                Toast.makeText(context, "Gagal menyimpan data", Toast.LENGTH_SHORT).show()
+//                viewModel.resetStatus()
+//            }
+//        }
+    }
+
+    override fun onButtonClickListener(v: View) {
+        val berat = viewModel.berat.value
+        val tinggi = viewModel.tinggi.value
+        val usia = viewModel.usia.value
+
+        // Validasi
+        if (!berat.isNullOrEmpty() && !tinggi.isNullOrEmpty() && !usia.isNullOrEmpty()) {
+            viewModel.tambahData()
+            Toast.makeText(v.context, "Data berhasil ditambahkan", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(v.context, "Semua field harus diisi", Toast.LENGTH_SHORT).show()
         }
     }
 }

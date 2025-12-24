@@ -13,8 +13,8 @@ data class ProfilData(
     var tglLahir: String,
 
     @ColumnInfo(name = "jenis_kelamin")
-    var jenisKelamin: String
-) {
+    var jenisKelamin: String,
+
     @PrimaryKey
     var id: Int = 1
-}
+)

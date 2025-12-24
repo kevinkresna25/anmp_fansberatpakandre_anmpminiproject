@@ -11,32 +11,39 @@ import com.ubaya.anmpminiproject.util.FileHelper
 import com.ubaya.anmpminiproject.util.buildDb
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
-class UkurViewModel(application: Application) : AndroidViewModel(application) {
+class UkurViewModel(application: Application) : AndroidViewModel(application), CoroutineScope {
 //    private val fileHelper = FileHelper(application)
 //    val saveStatus = MutableLiveData<Boolean?>()
+
+    private val job = Job()
     val berat = MutableLiveData<String>()
     val tinggi = MutableLiveData<String>()
     val usia = MutableLiveData<String>()
 
+    override val coroutineContext: CoroutineContext
+        get() = job + Dispatchers.IO
+
     fun tambahData() {
         if (!berat.value.isNullOrEmpty() && !tinggi.value.isNullOrEmpty() && !usia.value.isNullOrEmpty()) {
+
             val dataBaru = UkurData(
                 berat = berat.value!!,
                 tinggi = tinggi.value!!,
                 usia = usia.value!!
             )
 
-            CoroutineScope(Dispatchers.IO).launch {
-                val db = buildDb(getApplication()) // Panggil database
-                db.ukurDao().insertUkur(dataBaru) // Simpan data
+            launch {
+                val db = buildDb(getApplication())
+                db.ukurDao().insertUkur(dataBaru)
             }
 
-            // Reset form setelah simpan
-            berat.value = ""
-            tinggi.value = ""
-            usia.value = ""
+            berat.postValue("")
+            tinggi.postValue("")
+            usia.postValue("")
         }
     }
 

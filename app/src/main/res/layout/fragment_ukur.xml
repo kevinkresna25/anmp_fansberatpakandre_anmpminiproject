@@ -1,62 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.UkurFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <data>
+        <variable
+            name="viewModel"
+            type="com.ubaya.anmpminiproject.viewmodel.UkurViewModel" />
+        <variable
+            name="listener"
+            type="com.ubaya.anmpminiproject.view.ButtonClickListener" />
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="50dp">
+        tools:context=".view.UkurFragment">
 
-        <com.google.android.material.textfield.TextInputLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="50dp">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txtBeratBadan"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Berat Badan (kg)"
-                android:numeric="signed" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginTop="30dp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtBeratBadan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Berat Badan (kg)"
+                    android:inputType="numberDecimal"
+                    android:text="@={viewModel.berat}"  />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txtTinggiBadan"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Tinggi Badan (cm)"
-                android:numeric="signed" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginTop="40dp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtTinggiBadan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Tinggi Badan (cm)"
+                    android:inputType="numberDecimal"
+                    android:text="@={viewModel.tinggi}" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txtUsia"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Usia (tahun)"
-                android:numeric="signed" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginTop="40dp">
 
-        <Button
-            android:id="@+id/btnTambahData"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_gravity="left"
-            android:layout_marginTop="40dp"
-            android:text="TAMBAH DATA" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtUsia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Usia (tahun)"
+                    android:inputType="number"
+                    android:text="@={viewModel.usia}" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    </LinearLayout>
-</FrameLayout>
+            <Button
+                android:id="@+id/btnTambahData"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_gravity="left"
+                android:layout_marginTop="40dp"
+                android:text="TAMBAH DATA"
+                android:onClick="@{listener::onButtonClickListener}" />
+        </LinearLayout>
+    </FrameLayout>
+</layout>
