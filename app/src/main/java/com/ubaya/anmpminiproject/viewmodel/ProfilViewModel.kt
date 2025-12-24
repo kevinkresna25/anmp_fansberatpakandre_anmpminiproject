@@ -13,9 +13,6 @@ import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
 class ProfilViewModel(application: Application) : AndroidViewModel(application), CoroutineScope {
-//    private val sharedPrefHelper = SharedPrefHelper(application)
-//    val saveStatus = MutableLiveData<Boolean?>()
-
     private val job = Job()
 
     val nama = MutableLiveData<String>()
@@ -25,12 +22,6 @@ class ProfilViewModel(application: Application) : AndroidViewModel(application),
 
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.IO
-
-//    fun loadProfil() {
-//        nama.value = sharedPrefHelper.getNama()
-//        tglLahir.value = sharedPrefHelper.getTglLahir()
-//        jenisKelamin.value = sharedPrefHelper.getJenisKelamin()
-//    }
 
     fun fetch() {
         launch {

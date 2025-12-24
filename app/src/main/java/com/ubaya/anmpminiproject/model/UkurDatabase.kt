@@ -15,7 +15,6 @@ abstract class UkurDatabase : RoomDatabase() {
         private var instance: UkurDatabase? = null
         private val LOCK = Any()
 
-        // Agar database tidak dibuat berulang-ulang bikin hp lemot
         fun buildDatabase(context: Context) = instance ?: synchronized(LOCK) {
             instance ?: Room.databaseBuilder(
                 context.applicationContext,

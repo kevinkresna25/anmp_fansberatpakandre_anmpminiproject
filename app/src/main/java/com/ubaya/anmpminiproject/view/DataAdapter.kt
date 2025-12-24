@@ -24,11 +24,6 @@ class DataAdapter(private var pengukuranList: ArrayList<UkurData>)
 
     override fun onBindViewHolder(holder: PengukuranViewHolder, position: Int) {
         holder.binding.ukur = pengukuranList[position]
-
-//        val pengukuran = pengukuranList[position]
-//        holder.binding.txtUsiaValue.text = pengukuran.usia
-//        holder.binding.txtTinggiValue.text = pengukuran.tinggi
-//        holder.binding.txtBeratValue.text = pengukuran.berat
     }
 
     fun updateData(newPengukuranList: List<UkurData>) {

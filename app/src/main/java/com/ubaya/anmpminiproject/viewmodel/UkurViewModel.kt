@@ -16,10 +16,8 @@ import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
 class UkurViewModel(application: Application) : AndroidViewModel(application), CoroutineScope {
-//    private val fileHelper = FileHelper(application)
-//    val saveStatus = MutableLiveData<Boolean?>()
-
     private val job = Job()
+
     val berat = MutableLiveData<String>()
     val tinggi = MutableLiveData<String>()
     val usia = MutableLiveData<String>()
@@ -46,37 +44,4 @@ class UkurViewModel(application: Application) : AndroidViewModel(application), C
             usia.postValue("")
         }
     }
-
-//    fun simpanPengukuran(pengukuranBaru: Pengukuran) {
-//        try {
-//            val jsonString = fileHelper.readFromFile()
-//            val gson = Gson()
-//            val listType = object : TypeToken<MutableList<Pengukuran>>() {}.type
-//
-//            val daftarPengukuran: MutableList<Pengukuran> = if (jsonString.isNotEmpty()) {
-//                gson.fromJson(jsonString, listType)
-//            } else {
-//                mutableListOf()
-//            }
-//
-//            // Tambah data baru ke list
-//            daftarPengukuran.add(pengukuranBaru)
-//
-//            // Ubah list yang sudah diperbarui menjadi JSON
-//            val newJsonString = gson.toJson(daftarPengukuran)
-//
-//            // Tulis kembali ke file
-//            fileHelper.writeToFile(newJsonString)
-//            saveStatus.value = true
-//            resetStatus()
-//        } catch (e: Exception) {
-//            e.printStackTrace()
-//            saveStatus.value = false
-//            resetStatus()
-//        }
-//    }
-//
-//    fun resetStatus() {
-//        saveStatus.value = null
-//    }
 }

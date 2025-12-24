@@ -16,10 +16,6 @@ import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
 class DataViewModel(application: Application) : AndroidViewModel(application), CoroutineScope {
-//    private val fileHelper = FileHelper(application)
-//    val listPengukuran = MutableLiveData<List<Pengukuran>>()
-//    val listKosong = MutableLiveData<Boolean>()
-
     private val job = Job()
 
     val ukurListLD = MutableLiveData<List<UkurData>>()
@@ -45,17 +41,4 @@ class DataViewModel(application: Application) : AndroidViewModel(application), C
             }
         }
     }
-
-//    fun loadData() {
-//        val jsonString = fileHelper.readFromFile()
-//        if (jsonString.isNotEmpty()) {
-//            val gson = Gson()
-//            val listType = object : TypeToken<List<Pengukuran>>() {}.type
-//            val data: List<Pengukuran> = gson.fromJson(jsonString, listType)
-//            listPengukuran.value = data
-//            listKosong.value = false
-//        } else {
-//            listKosong.value = true
-//        }
-//    }
 }

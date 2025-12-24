@@ -32,34 +32,6 @@ class UkurFragment : Fragment(), UkurListener {
         binding.viewModel = viewModel
         binding.listener = this
         binding.lifecycleOwner = viewLifecycleOwner // supaya LiveData di ViewModel Two-Way Binding
-
-//        binding.btnTambahData.setOnClickListener {
-//            val berat = binding.txtBeratBadan.text.toString()
-//            val tinggi = binding.txtTinggiBadan.text.toString()
-//            val usia = binding.txtUsia.text.toString()
-//
-//            if (berat.isNotEmpty() && tinggi.isNotEmpty() && usia.isNotEmpty()) {
-//                val pengukuran = Pengukuran(berat, tinggi, usia)
-//                viewModel.simpanPengukuran(pengukuran)
-//            } else {
-//                Toast.makeText(context, "Semua field harus diisi", Toast.LENGTH_SHORT).show()
-//            }
-//        }
-
-//        // Observe status penyimpanan
-//        viewModel.saveStatus.observe(viewLifecycleOwner) { status ->
-//            if (status == true) {
-//                Toast.makeText(context, "Data berhasil ditambahkan", Toast.LENGTH_SHORT).show()
-//                binding.txtBeratBadan.setText("")
-//                binding.txtTinggiBadan.setText("")
-//                binding.txtUsia.setText("")
-//                binding.txtBeratBadan.requestFocus()
-//                viewModel.resetStatus()
-//            } else if(status == false) {
-//                Toast.makeText(context, "Gagal menyimpan data", Toast.LENGTH_SHORT).show()
-//                viewModel.resetStatus()
-//            }
-//        }
     }
 
     override fun onClick(v: View) {

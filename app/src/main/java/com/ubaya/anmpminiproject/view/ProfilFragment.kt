@@ -33,35 +33,9 @@ class ProfilFragment : Fragment(), ProfilListener {
         viewModel.fetch()
 
         observeViewModel()
-
-//        binding.btnSimpan.setOnClickListener {
-//            val nama = binding.txtNama.text.toString()
-//            val tglLahir = binding.txtTglLahir.text.toString()
-//            val selectedRadioId = binding.radioGroupJK.checkedRadioButtonId
-//            val jenisKelamin = if (selectedRadioId == R.id.radioLaki) "Laki-laki" else "Perempuan"
-//
-//            if (nama.isNotEmpty() && tglLahir.isNotEmpty() && selectedRadioId != -1) {
-//                viewModel.simpanProfil(nama, tglLahir, jenisKelamin)
-//            } else {
-//                Toast.makeText(context, "Harap lengkapi semua data", Toast.LENGTH_SHORT).show()
-//            }
-//        }
     }
 
     private fun observeViewModel() {
-//        viewModel.nama.observe(viewLifecycleOwner) {
-//            binding.txtNama.setText(it)
-//        }
-//        viewModel.tglLahir.observe(viewLifecycleOwner) {
-//            binding.txtTglLahir.setText(it)
-//        }
-//        viewModel.jenisKelamin.observe(viewLifecycleOwner) {
-//            if (it == "Laki-laki") {
-//                binding.radioLaki.isChecked = true
-//            } else if (it == "Perempuan") {
-//                binding.radioPerempuan.isChecked = true
-//            }
-//        }
         viewModel.statusSimpan.observe(viewLifecycleOwner) { status ->
             if (status != null) {
                 if (status == true) {

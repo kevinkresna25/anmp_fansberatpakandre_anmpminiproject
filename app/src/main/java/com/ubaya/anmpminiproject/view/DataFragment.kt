@@ -45,13 +45,5 @@ class DataFragment : Fragment() {
         viewModel.ukurListLD.observe(viewLifecycleOwner) { data ->
             adapter.updateData(data)
         }
-
-//        viewModel.listKosong.observe(viewLifecycleOwner) { isKosong ->
-//            if (isKosong == true) {
-//                // Hapus data lama di adapter jika file kosong
-//                adapter.updateData(emptyList())
-//                Toast.makeText(context, "Belum ada data pengukuran", Toast.LENGTH_SHORT).show()
-//            }
-//        }
     }
 }
