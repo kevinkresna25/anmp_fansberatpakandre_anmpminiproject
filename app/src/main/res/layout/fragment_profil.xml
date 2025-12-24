@@ -1,79 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.ProfilFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <data>
+        <variable
+            name="viewModel"
+            type="com.ubaya.anmpminiproject.viewmodel.ProfilViewModel" />
+        <variable
+            name="listener"
+            type="com.ubaya.anmpminiproject.view.ProfilListener" />
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="50dp">
+        tools:context=".view.ProfilFragment">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayoutNama"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:hint="Nama">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="50dp">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txtNama"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutNama"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginTop="30dp"
+                android:hint="Nama">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayoutTglLahir"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:hint="Tanggal Lahir (DD/MM/YYYY)">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtNama"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@={viewModel.nama}"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txtTglLahir"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutTglLahir"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="date" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginTop="30dp"
+                android:hint="Tanggal Lahir (DD/MM/YYYY)">
 
-        <TextView
-            android:id="@+id/lblJenisKelamin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="Jenis Kelamin"
-            android:textSize="16sp" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtTglLahir"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@={viewModel.tglLahir}"
+                    android:inputType="date" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <RadioGroup
-            android:id="@+id/radioGroupJK"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="vertical">
-
-            <RadioButton
-                android:id="@+id/radioLaki"
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/lblJenisKelamin"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Laki-laki" />
+                android:layout_marginTop="30dp"
+                android:text="Jenis Kelamin"
+                android:textSize="16sp" />
 
-            <RadioButton
-                android:id="@+id/radioPerempuan"
-                android:layout_width="wrap_content"
+            <RadioGroup
+                android:id="@+id/radioGroupJK"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Perempuan" />
-        </RadioGroup>
+                android:layout_marginTop="8dp"
+                android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btnSimpan"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="32dp"
-            android:text="SIMPAN" />
-    </LinearLayout>
-</FrameLayout>
+                <RadioButton
+                    android:id="@+id/radioLaki"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Laki-laki"
+                    android:tag="0"
+                    android:onClick="@{listener::onRadioClick}"
+                    android:checked="@{viewModel.jenisKelamin == 0 ? true : false}" />
+
+                <RadioButton
+                    android:id="@+id/radioPerempuan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Perempuan"
+                    android:tag="1"
+                    android:onClick="@{listener::onRadioClick}"
+                    android:checked="@{viewModel.jenisKelamin == 1 ? true : false}" />
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/btnSimpan"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="32dp"
+                android:text="SIMPAN"
+                android:onClick="@{listener::onClick}" />
+        </LinearLayout>
+    </FrameLayout>
+</layout>

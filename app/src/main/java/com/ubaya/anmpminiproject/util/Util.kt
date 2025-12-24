@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.ubaya.anmpminiproject.model.UkurDatabase
 
-val DB_NAME = "anmp_ukur_db"
+val DB_NAME = "db_anmp_ukur"
 
 fun buildDb(context: Context): UkurDatabase {
     return Room.databaseBuilder(

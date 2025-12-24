@@ -8,7 +8,7 @@
             type="com.ubaya.anmpminiproject.viewmodel.UkurViewModel" />
         <variable
             name="listener"
-            type="com.ubaya.anmpminiproject.view.ButtonClickListener" />
+            type="com.ubaya.anmpminiproject.view.UkurListener" />
     </data>
 
     <FrameLayout
@@ -71,7 +71,7 @@
                 android:layout_gravity="left"
                 android:layout_marginTop="40dp"
                 android:text="TAMBAH DATA"
-                android:onClick="@{listener::onButtonClickListener}" />
+                android:onClick="@{listener::onClick}" />
         </LinearLayout>
     </FrameLayout>
 </layout>

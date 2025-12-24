@@ -12,7 +12,7 @@ import com.ubaya.anmpminiproject.databinding.FragmentUkurBinding
 import com.ubaya.anmpminiproject.model.Pengukuran
 import com.ubaya.anmpminiproject.viewmodel.UkurViewModel
 
-class UkurFragment : Fragment(), ButtonClickListener {
+class UkurFragment : Fragment(), UkurListener {
     private lateinit var binding: FragmentUkurBinding
     private lateinit var viewModel: UkurViewModel
 
@@ -62,7 +62,7 @@ class UkurFragment : Fragment(), ButtonClickListener {
 //        }
     }
 
-    override fun onButtonClickListener(v: View) {
+    override fun onClick(v: View) {
         val berat = viewModel.berat.value
         val tinggi = viewModel.tinggi.value
         val usia = viewModel.usia.value
