@@ -1,10 +1,10 @@
-# Mini Project ANMP
+# Mini Project ANMP - UAS
 
 **Advanced Native Mobile Programming - Aplikasi Ukur Perkembangan Anak**
 
 Aplikasi Android sederhana untuk mencatat dan memantau data perkembangan anak. Aplikasi ini memungkinkan pengguna untuk memasukkan data pengukuran (berat, tinggi, usia), melihat riwayat data, dan mengelola profil anak.
 
-Proyek ini dibuat untuk memenuhi tugas Mini Project UTS mata kuliah Advanced Native Mobile Programming, dengan menerapkan arsitektur **MVVM**, **Jetpack Navigation**, dan **Penyimpanan Internal** (File & SharedPreferences).
+Proyek ini dibuat untuk memenuhi tugas **Mini Project UAS** mata kuliah Advanced Native Mobile Programming, dengan menerapkan arsitektur **MVVM**, **Jetpack Navigation**, **Data Binding**, dan penyimpanan lokal menggunakan **Room Database**.
 
 ## Daftar Isi
 - [Tampilan Aplikasi](#tampilan-aplikasi)
@@ -15,30 +15,29 @@ Proyek ini dibuat untuk memenuhi tugas Mini Project UTS mata kuliah Advanced Nat
 
 Aplikasi ini terdiri dari tiga halaman utama yang terhubung oleh *Bottom Navigation* dan *Navigation Drawer*:
 
-1. **Halaman Ukur:** Formulir untuk memasukkan data berat badan (kg), tinggi badan (cm), dan usia (tahun).
-2. **Halaman Data:** Menampilkan riwayat data pengukuran (Age, Height, Weight) yang telah disimpan.
-3. **Halaman Profil:** Formulir untuk menyimpan dan menampilkan data profil anak (nama, tanggal lahir, jenis kelamin).
+1. **Halaman Ukur:** Formulir untuk memasukkan data berat badan (kg), tinggi badan (cm), dan usia (tahun) ke dalam database.
+2. **Halaman Data:** Menampilkan riwayat data pengukuran (Age, Height, Weight) yang diambil dari database lokal.
+3. **Halaman Profil:** Formulir untuk menyimpan dan mengedit data profil anak (nama, tanggal lahir, jenis kelamin) menggunakan logika *Single Source of Truth*.
 
 ## Arsitektur & Teknologi
 
-Proyek ini dibangun menggunakan arsitektur **MVVM (Model–View–ViewModel)** untuk memisahkan logika bisnis dari antarmuka pengguna.
+Proyek ini dibangun menggunakan arsitektur **MVVM (Model–View–ViewModel)** modern untuk memisahkan logika bisnis, data, dan antarmuka pengguna.
 
 - **Bahasa:** **Kotlin**
 - **Arsitektur:** MVVM
 - **Komponen Android Jetpack:**
-  - **Navigation Component:** Mengelola alur navigasi antar *fragment*.
-  - **ViewModel:** Mengelola data dan logika bisnis yang terkait dengan UI, serta bertahan dari perubahan konfigurasi.
-  - **LiveData:** Memberi tahu UI (View) tentang perubahan data secara *lifecycle-aware*.
-  - **View Binding:** Mengikat komponen UI di layout ke kode Kotlin dengan aman.
+  - **Room Database:** Library persistensi data (SQLite abstraction) untuk menyimpan riwayat pengukuran dan profil anak secara lokal.
+  - **Data Binding:** Mengikat komponen UI di layout XML langsung ke sumber data (ViewModel). Menerapkan **Two-Way Binding** (untuk input data) dan **Listener Binding** (untuk event klik).
+  - **Navigation Component:** Mengelola alur navigasi antar *fragment* (Ukur, Data, Profil).
+  - **ViewModel:** Mengelola data UI dan logika bisnis agar tetap hidup saat terjadi perubahan konfigurasi (seperti rotasi layar).
+  - **LiveData:** Pola pengamat data yang sadar siklus hidup (*lifecycle-aware*) untuk update UI secara otomatis.
+- **Asynchronous Programming:**
+  - **Kotlin Coroutines:** Menangani operasi database di *background thread* (IO Dispatcher) agar tidak memblokir antarmuka pengguna (Main Thread).
 - **Antarmuka Pengguna (UI):**
   - `BottomNavigationView`
   - `NavigationDrawer`
-  - `RecyclerView`
-  - `CardView`, `TextInputEditText`, `RadioGroup`
-- **Penyimpanan Data:**
-  - **Internal File Storage:** Menyimpan daftar riwayat pengukuran.
-  - **SharedPreferences:** Menyimpan data profil anak.
-  - **Gson:** Serialisasi objek Kotlin (`Pengukuran`) ke JSON untuk disimpan ke file, serta deserialisasi saat dibaca.
+  - `RecyclerView` (dengan Data Binding pada item layout)
+  - `CardView`, `TextInputLayout`, `RadioGroup`
 
 ## Anggota Kelompok
 
